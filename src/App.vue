@@ -21,7 +21,7 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
 import ConsentBanner from '@/components/ConsentBanner.vue'
 import { onMounted } from 'vue'
-import { useGoogleTagManager } from './composables/useGoogleTagManager'
+import { useGoogleTagManager } from '@/composables/useGoogleTagManager'
 // window.gtag('config', 'G-H1JGDYYVF4')
 // window.gtag('consent', 'default', {
 //   ad_storage: 'denied',
@@ -31,7 +31,7 @@ import { useGoogleTagManager } from './composables/useGoogleTagManager'
 // })
 
 onMounted(async () => {
-  useGoogleTagManager(window, document, 'script', 'dataLayer', 'G-H1JGDYYVF4')
+  useGoogleTagManager(window, document, 'script', 'dataLayer', 'GTM-ND26GJFT')
 })
 window.dataLayer.push({
   event: 'page_view',
