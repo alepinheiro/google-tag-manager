@@ -18,15 +18,21 @@
         j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
         f.parentNode.insertBefore(j, f)
       })(window, document, 'script', 'dataLayer', 'GTM-ND26GJFT')
+
+      window.dataLayer.push({
+        event: 'consent_initialized',
+        'gtm.consentState': {
+          ad_storage: 'denied',
+          analytics_storage: 'denied',
+        },
+      })
     </script>
-    <script>
+    <!-- <script>
       // Define dataLayer and the gtag function.
       window.dataLayer = window.dataLayer || []
       function gtag() {
-        dataLayer.push(arguments)
+        window.dataLayer.push(arguments)
       }
-
-      gtag('js', new Date())
 
       // Set default consent to 'denied' as a placeholder
       // Determine actual values based on your own requirements
@@ -36,7 +42,7 @@
         ad_personalization: 'denied',
         analytics_storage: 'denied',
       })
-    </script>
+    </script> -->
     <!-- End Google Tag Manager -->
   </head>
   <body>
