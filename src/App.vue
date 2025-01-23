@@ -21,10 +21,10 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
 import ConsentBanner from '@/components/ConsentBanner.vue'
 import { onMounted } from 'vue'
-// import { useGoogleTagManager } from '@/composables/useGoogleTagManager'
+import { useGoogleTagManager } from '@/composables/useGoogleTagManager'
 
 onMounted(async () => {
-  // useGoogleTagManager(window, document, 'script', 'dataLayer', 'GTM-ND26GJFT')
+  useGoogleTagManager(window, document, 'script', 'dataLayer', 'GTM-ND26GJFT')
   // window.gtag('config', 'G-H1JGDYYVF4')
   window.dataLayer.push({
     event: 'evento_personalizado',
@@ -42,7 +42,6 @@ onMounted(async () => {
       analytics_storage: 'denied',
     },
   })
-  console.log('consent')
 })
 </script>
 
