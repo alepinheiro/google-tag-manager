@@ -27,6 +27,10 @@ window.gtag('consent', 'default', {
   ad_personalization: 'denied',
   analytics_storage: 'denied',
 })
+
+window.dataLayer.push({
+  event: 'page_view',
+})
 </script>
 
 <style scoped>
