@@ -42,9 +42,12 @@
     "npm-run-all2": "^7.0.2",
     "oxlint": "^0.15.6",
     "prettier": "^3.4.2",
+    "rollup-plugin-visualizer": "^5.14.0",
     "start-server-and-test": "^2.0.10",
     "typescript": "~5.7.3",
     "vite": "^6.0.11",
+    "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-pwa": "^0.21.1",
     "vite-plugin-vue-devtools": "^7.7.0",
     "vitest": "^3.0.2",
     "vue-tsc": "^2.2.0"
