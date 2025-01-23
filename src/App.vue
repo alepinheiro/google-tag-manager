@@ -20,7 +20,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
 import ConsentBanner from '@/components/ConsentBanner.vue'
-
+window.gtag('config', 'G-H1JGDYYVF4')
 window.gtag('consent', 'default', {
   ad_storage: 'denied',
   ad_user_data: 'denied',
