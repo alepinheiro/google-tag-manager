@@ -30,12 +30,11 @@ import { useGoogleTagManager } from './composables/useGoogleTagManager'
 //   analytics_storage: 'denied',
 // })
 
-// window.dataLayer.push({
-//   event: 'page_view',
-// })
-
 onMounted(async () => {
   useGoogleTagManager(window, document, 'script', 'dataLayer', 'G-H1JGDYYVF4')
+})
+window.dataLayer.push({
+  event: 'page_view',
 })
 </script>
 
