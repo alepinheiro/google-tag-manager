@@ -26,8 +26,8 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
- export default defineComponent{
+import {defineComponent} from
+ export default defineComponent({
   data() {
     return {
       showBanner: true,
@@ -120,7 +120,7 @@ import {defineComponent} from 'vue'
       this.showBanner = false
     }
   },
-}
+})
 </script>
 
 <style scoped>
