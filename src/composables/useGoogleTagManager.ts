@@ -15,30 +15,42 @@ export const useGoogleTagManager = (
   i: string,
 ): void => {
   // Safely initialize the data layer if it doesn't exist
-  const dataLayer = w[l as keyof typeof w] || [];
-  (w as any)[l] = dataLayer;
+  const dataLayer = w[l as keyof typeof w] || []
+  ;(w as any)[l] = dataLayer
 
   // Push the initial GTM event with the current timestamp
   dataLayer.push({
     'gtm.start': new Date().getTime(),
     event: 'gtm.js',
-  });
+  })
 
   // Get the first script element in the document
-  const f = d.getElementsByTagName(s)[0] as HTMLScriptElement;
+  const f = d.getElementsByTagName(s)[0] as HTMLScriptElement
 
   // Create a new script element for the GTM script
-  const j = d.createElement(s) as HTMLScriptElement;
+  const j = d.createElement(s) as HTMLScriptElement
 
   // Append a query parameter if the data layer is named differently from the default "dataLayer"
-  const dl = l !== 'dataLayer' ? `&l=${l}` : '';
+  const dl = l !== 'dataLayer' ? `&l=${l}` : ''
 
   // Set the script to load asynchronously
-  j.async = true;
+  j.async = true
+  j.defer = true
 
   // Set the source of the script to the GTM URL with the provided ID
-  j.src = `https://www.googletagmanager.com/gtm.js?id=${i}${dl}`;
+  j.src = `https://www.googletagmanager.com/gtm.js?id=${i}${dl}`
 
   // Insert the GTM script before the first script tag in the document
-  f.parentNode?.insertBefore(j, f);
-};
+  f.parentNode?.insertBefore(j, f)
+
+  function gtag(...args: any[]) {
+    window.dataLayer.push(arguments)
+  }
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+  })
+}
