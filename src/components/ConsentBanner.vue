@@ -92,10 +92,10 @@ const acceptAll = () => {
 const saveConsent = () => {
   const consentModes = Object.keys(policies).reduce(
     (acc, key) => {
-      acc[key] = policies[key as keyof typeof policies].enabled
+      acc[key] = policies[key as keyof typeof policies].enabled ? 'granted' : 'denied'
       return acc
     },
-    {} as Record<string, boolean>,
+    {} as Record<string, 'granted' | 'denied'>,
   )
 
   if (window.gtag) {
@@ -113,7 +113,7 @@ onMounted(() => {
     const parsedConsent = JSON.parse(savedConsent)
     Object.keys(policies).forEach((key) => {
       if (!policies[key as keyof typeof policies].required) {
-        policies[key as keyof typeof policies].enabled = parsedConsent[key]
+        policies[key as keyof typeof policies].enabled = parsedConsent[key] === 'granted'
       }
     })
 
