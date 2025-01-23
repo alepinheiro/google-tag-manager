@@ -26,10 +26,9 @@ import { useGoogleTagManager } from '@/composables/useGoogleTagManager'
 onMounted(async () => {
   useGoogleTagManager(window, document, 'script', 'dataLayer', 'GTM-ND26GJFT')
   window.gtag('config', 'G-H1JGDYYVF4')
-  window.gtag('page_view', 'teste')
 
   window.dataLayer.push({
-    event: 'page_view',
+    event: 'evento_personalizado',
   })
 
   window.gtag('consent', 'default', {
