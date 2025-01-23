@@ -42,8 +42,8 @@ onMounted(async () => {
       analytics_storage: 'denied',
     },
   })
+  console.log('consent')
 })
-console.log('consent')
 </script>
 
 <style scoped>
