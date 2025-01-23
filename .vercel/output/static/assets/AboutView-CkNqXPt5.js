@@ -1,1 +1,0 @@
-import{_ as s}from"./index-BX-6NgVm.js";import{c as a,a as o,o as n}from"./vendor-Cl052-xi.js";const r={class:"about"};const t=s({},[["render",function(s,t){return n(),a("div",r,t[0]||(t[0]=[o("h1",null,"This is an about page",-1)]))}]]);export{t as default};

@@ -6,12 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Teste do Google Tag Manager</title>
 
-    <script src="/js/gtm-loader.js" data-gtm-id="GTM-ND26GJFT" defer></script>
-    <script type="module" crossorigin src="/assets/index-BX-6NgVm.js"></script>
+    <!-- Google Tag Manager -->
+    <script>
+      function ga(w, d, s, l, i) {
+        w[l] = w[l] || []
+        w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : ''
+        j.async = true
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
+        f.parentNode.insertBefore(j, f)
+      }
+      ga(window, document, 'script', 'dataLayer', 'GTM-ND26GJFT')
+
+      window.dataLayer.push({
+        event: 'consent_initialized',
+        'gtm.consentState': {
+          ad_storage: 'denied',
+          analytics_storage: 'denied',
+        },
+      })
+    </script>
+    <!-- <script>
+      // Define dataLayer and the gtag function.
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        window.dataLayer.push(arguments)
+      }
+
+      // Set default consent to 'denied' as a placeholder
+      // Determine actual values based on your own requirements
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+      })
+    </script> -->
+    <!-- End Google Tag Manager -->
+    <script type="module" crossorigin src="/assets/index-O8S9SUDj.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/vendor-Cl052-xi.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-jbQyqgar.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BNHDzh9Z.css">
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <!-- <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-ND26GJFT"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript> -->
+    <!-- End Google Tag Manager (noscript) -->
     <div id="app"></div>
   </body>
 </html>
