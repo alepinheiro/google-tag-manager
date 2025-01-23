@@ -25,102 +25,104 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
+<script setup lang="ts">
+import { ref, reactive, onMounted } from 'vue'
 
-export default defineComponent({
-  data() {
-    return {
-      showBanner: true,
-      policies: {
-        ad_storage: {
-          label: 'Armazenamento de Publicidade',
-          description: 'Permite armazenamento relacionado a publicidade (como cookies)',
-          enabled: false,
-          required: false,
-        },
-        ad_user_data: {
-          label: 'Dados de Usuário para Publicidade',
-          description: 'Permite envio de dados do usuário para publicidade',
-          enabled: false,
-          required: false,
-        },
-        ad_personalization: {
-          label: 'Personalização de Publicidade',
-          description: 'Permite publicidade personalizada',
-          enabled: false,
-          required: false,
-        },
-        analytics_storage: {
-          label: 'Armazenamento de Análise',
-          description: 'Permite armazenamento relacionado a análises',
-          enabled: false,
-          required: false,
-        },
-        functionality_storage: {
-          label: 'Armazenamento de Funcionalidade',
-          description: 'Essencial para funcionalidades do site',
-          enabled: true,
-          required: true,
-        },
-        personalization_storage: {
-          label: 'Armazenamento de Personalização',
-          description: 'Permite personalização do site',
-          enabled: false,
-          required: false,
-        },
-        security_storage: {
-          label: 'Armazenamento de Segurança',
-          description: 'Permite funcionalidades de segurança',
-          enabled: true,
-          required: true,
-        },
-      },
+// Estado reativo
+const showBanner = ref(true)
+const policies = reactive({
+  ad_storage: {
+    label: 'Armazenamento de Publicidade',
+    description: 'Permite armazenamento relacionado a publicidade (como cookies)',
+    enabled: false,
+    required: false,
+  },
+  ad_user_data: {
+    label: 'Dados de Usuário para Publicidade',
+    description: 'Permite envio de dados do usuário para publicidade',
+    enabled: false,
+    required: false,
+  },
+  ad_personalization: {
+    label: 'Personalização de Publicidade',
+    description: 'Permite publicidade personalizada',
+    enabled: false,
+    required: false,
+  },
+  analytics_storage: {
+    label: 'Armazenamento de Análise',
+    description: 'Permite armazenamento relacionado a análises',
+    enabled: false,
+    required: false,
+  },
+  functionality_storage: {
+    label: 'Armazenamento de Funcionalidade',
+    description: 'Essencial para funcionalidades do site',
+    enabled: true,
+    required: true,
+  },
+  personalization_storage: {
+    label: 'Armazenamento de Personalização',
+    description: 'Permite personalização do site',
+    enabled: false,
+    required: false,
+  },
+  security_storage: {
+    label: 'Armazenamento de Segurança',
+    description: 'Permite funcionalidades de segurança',
+    enabled: true,
+    required: true,
+  },
+})
+
+// Funções para manipular o consentimento
+const togglePolicy = (key: keyof typeof policies) => {
+  if (!policies[key].required) {
+    policies[key].enabled = !policies[key].enabled
+  }
+}
+
+const acceptAll = () => {
+  Object.keys(policies).forEach((key) => {
+    policies[key as keyof typeof policies].enabled = true
+  })
+  saveConsent()
+}
+
+const saveConsent = () => {
+  const consentModes = Object.keys(policies).reduce(
+    (acc, key) => {
+      acc[key] = policies[key as keyof typeof policies].enabled
+      return acc
+    },
+    {} as Record<string, boolean>,
+  )
+
+  if (window.gtag) {
+    window.gtag('consent', 'update', consentModes)
+  }
+
+  localStorage.setItem('gtm_consent', JSON.stringify(consentModes))
+  showBanner.value = false
+}
+
+// Recupera o consentimento salvo ao montar o componente
+onMounted(() => {
+  const savedConsent = localStorage.getItem('gtm_consent')
+  if (savedConsent) {
+    const parsedConsent = JSON.parse(savedConsent)
+    Object.keys(policies).forEach((key) => {
+      if (!policies[key as keyof typeof policies].required) {
+        policies[key as keyof typeof policies].enabled = parsedConsent[key]
+      }
+    })
+
+    if (window.gtag) {
+      window.gtag('consent', 'update', parsedConsent)
     }
-  },
-  methods: {
-    togglePolicy(key) {
-      if (!this.policies[key].required) {
-        this.policies[key].enabled = !this.policies[key].enabled
-      }
-    },
-    acceptAll() {
-      Object.keys(this.policies).forEach((key) => {
-        this.policies[key].enabled = true
-      })
-      this.saveConsent()
-    },
-    saveConsent() {
-      const consentModes = Object.keys(this.policies).reduce((acc, key) => {
-        acc[key] = this.policies[key].enabled
-        return acc
-      }, {})
 
-      if (window.gtag) {
-        window.gtag('consent', 'update', consentModes)
-      }
-
-      localStorage.setItem('gtm_consent', JSON.stringify(consentModes))
-      this.showBanner = false
-    },
-  },
-  mounted() {
-    const savedConsent = localStorage.getItem('gtm_consent')
-    if (savedConsent) {
-      const parsedConsent = JSON.parse(savedConsent)
-      Object.keys(this.policies).forEach((key) => {
-        if (!this.policies[key].required) {
-          this.policies[key].enabled = parsedConsent[key]
-        }
-      })
-
-      if (window.gtag) {
-        window.gtag('consent', 'update', parsedConsent)
-      }
-
-      this.showBanner = false
-    }
-  },
+    showBanner.value = false
+  }
 })
 </script>
 
