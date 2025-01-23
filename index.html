@@ -8,7 +8,7 @@
 
     <!-- Google Tag Manager -->
     <script>
-      function ga(w, d, s, l, i) {
+      ;(function (w, d, s, l, i) {
         w[l] = w[l] || []
         w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' })
         var f = d.getElementsByTagName(s)[0],
@@ -17,18 +17,9 @@
         j.async = true
         j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
         f.parentNode.insertBefore(j, f)
-      }
-      ga(window, document, 'script', 'dataLayer', 'GTM-ND26GJFT')
-
-      window.dataLayer.push({
-        event: 'consent_initialized',
-        'gtm.consentState': {
-          ad_storage: 'denied',
-          analytics_storage: 'denied',
-        },
-      })
+      })(window, document, 'script', 'dataLayer', 'GTM-ND26GJFT')
     </script>
-    <!-- <script>
+    <script>
       // Define dataLayer and the gtag function.
       window.dataLayer = window.dataLayer || []
       function gtag() {
@@ -43,7 +34,7 @@
         ad_personalization: 'denied',
         analytics_storage: 'denied',
       })
-    </script> -->
+    </script>
     <!-- End Google Tag Manager -->
   </head>
   <body>
