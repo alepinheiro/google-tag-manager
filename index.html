@@ -6,22 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Teste do Google Tag Manager</title>
 
-    <script>
-      // Define dataLayer and the gtag function.
-      window.dataLayer = window.dataLayer || []
-      function gtag() {
-        dataLayer.push(arguments)
-      }
-
-      // Set default consent to 'denied' as a placeholder
-      // Determine actual values based on your own requirements
-      gtag('consent', 'default', {
-        ad_storage: 'denied',
-        ad_user_data: 'denied',
-        ad_personalization: 'denied',
-        analytics_storage: 'denied',
-      })
-    </script>
     <!-- Google Tag Manager -->
     <script>
       ;(function (w, d, s, l, i) {
@@ -34,6 +18,24 @@
         j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl
         f.parentNode.insertBefore(j, f)
       })(window, document, 'script', 'dataLayer', 'GTM-ND26GJFT')
+    </script>
+    <script>
+      // Define dataLayer and the gtag function.
+      window.dataLayer = window.dataLayer || []
+      function gtag() {
+        dataLayer.push(arguments)
+      }
+
+      gtag('js', new Date())
+
+      // Set default consent to 'denied' as a placeholder
+      // Determine actual values based on your own requirements
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+      })
     </script>
     <!-- End Google Tag Manager -->
   </head>
