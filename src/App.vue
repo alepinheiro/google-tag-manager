@@ -35,7 +35,15 @@ onMounted(async () => {
   //   ad_personalization: 'denied',
   //   analytics_storage: 'denied',
   // })
+  window.dataLayer.push({
+    event: 'consent_initialized',
+    'gtm.consentState': {
+      ad_storage: 'denied',
+      analytics_storage: 'denied',
+    },
+  })
 })
+console.log('consent')
 </script>
 
 <style scoped>
