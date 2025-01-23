@@ -6,10 +6,38 @@ import vercel from 'vite-plugin-vercel'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue(), vercel(), vueDevTools()],
+  plugins: [
+    vue(),
+    vercel(),
+    vueDevTools(),
+    viteCompression({
+      algorithm: 'brotliCompress',
+      ext: '.br',
+    }),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+
+  build: {
+    chunkSizeWarningLimit: 500,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return 'vendor'
+          }
+        },
+      },
+    },
+    minify: 'terser',
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+      },
     },
   },
 })
