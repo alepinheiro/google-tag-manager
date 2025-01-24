@@ -24,7 +24,7 @@ export const useGoogleTagManager = (
 
   // Push the initial GTM event with the current timestamp
   dataLayer.push({
-    event: 'Init',
+    event: 'gtm.init',
     visitorType: 'customer',
     pageTitle: d.title,
     pageHostname: w.location.hostname,
