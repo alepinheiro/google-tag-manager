@@ -20,13 +20,8 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
 import ConsentBanner from '@/components/ConsentBanner.vue'
-import { onMounted } from 'vue'
-import { useGoogleTagManager } from '@/composables/useGoogleTagManager'
+// import { onMounted } from 'vue'
 
-useGoogleTagManager(window, document, 'script', 'dataLayer', 'GTM-ND26GJFT')
-window.dataLayer.push({
-  event: 'evento_personalizado',
-})
 // onMounted(async () => {
 // })
 </script>
