@@ -20,10 +20,6 @@
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from '@/components/HelloWorld.vue'
 import ConsentBanner from '@/components/ConsentBanner.vue'
-// import { onMounted } from 'vue'
-
-// onMounted(async () => {
-// })
 </script>
 
 <style scoped>
