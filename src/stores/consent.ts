@@ -10,14 +10,55 @@ export interface PolicyConfig {
   description: string
 }
 
-export type PolicyKey =
-  | 'ad_storage'
-  | 'ad_user_data'
-  | 'security_storage'
-  | 'analytics_storage'
-  | 'ad_personalization'
-  | 'functionality_storage'
-  | 'personalization_storage'
+/**
+ * @description Políticas de consentimento para rastreamento e armazenamento de dados
+ * @enum {string}
+ */
+export enum ConsentPolicy {
+  /**
+   * @description Controla o armazenamento de cookies de publicidade
+   * @example Impede que o Google Tag Manager armazene cookies de rastreamento de anúncios
+   */
+  AD_STORAGE = 'ad_storage',
+
+  /**
+   * @description Bloqueia envio de dados de usuário para campanhas publicitárias
+   * @example Previne que dados de navegação sejam compartilhados com plataformas de ads como Google Ads
+   */
+  AD_USER_DATA = 'ad_user_data',
+
+  /**
+   * @description Desativa criação de perfis publicitários personalizados
+   * @example Evita que o Facebook Ads crie perfis de segmentação baseados no comportamento do usuário
+   */
+  AD_PERSONALIZATION = 'ad_personalization',
+
+  /**
+   * @description Configura coleta de métricas de uso e desempenho
+   * @example Permite tracking de eventos e conversões no Google Analytics sem identificação pessoal
+   */
+  ANALYTICS_STORAGE = 'analytics_storage',
+
+  /**
+   * @description Mantém funcionalidades essenciais do site
+   * @example Preserva configurações de preferência de idioma e temas sem identificação pessoal
+   */
+  FUNCTIONALITY_STORAGE = 'functionality_storage',
+
+  /**
+   * @description Controla personalização de experiência do usuário
+   * @example Impede recomendações personalizadas baseadas em histórico de navegação
+   */
+  PERSONALIZATION_STORAGE = 'personalization_storage',
+
+  /**
+   * @description Ativa mecanismos de proteção de sessão e dados
+   * @example Permite validações de sessão e prevenção de fraudes sem rastreamento
+   */
+  SECURITY_STORAGE = 'security_storage',
+}
+
+export type PolicyKey = `${ConsentPolicy}`
 
 export type PolicyMap = Record<PolicyKey, PolicyConfig>
 
