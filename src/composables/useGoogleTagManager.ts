@@ -18,13 +18,6 @@ export const useGoogleTagManager = (
   const dataLayer = w[l as keyof typeof w] || []
   ;(w as any)[l] = dataLayer
 
-  dataLayer.push({
-    event: 'Pageview',
-    pagePath: 'https://www.googleanalytics.dev/pancakes',
-    pageTitle: 'Pancake Event Signup',
-    visitorType: 'customer',
-  })
-
   // Push the initial GTM event with the current timestamp
   dataLayer.push({
     'gtm.start': new Date().getTime(),
