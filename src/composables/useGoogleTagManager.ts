@@ -1,3 +1,5 @@
+import type { Router } from 'vue-router'
+
 /**
  * A hook that injects the Google Tag Manager script into a web page.
  *
@@ -6,6 +8,7 @@
  * @param s - The tag name of the element where the GTM script will be injected. Usually "script".
  * @param l - The name of the data layer object. Typically "dataLayer".
  * @param i - The Google Tag Manager ID (GTM-XXXXXX).
+ * @param r - The Vue Router instance.
  */
 export const useGoogleTagManager = (
   w: Window,
@@ -13,10 +16,20 @@ export const useGoogleTagManager = (
   s: string = 'script',
   l: string = 'dataLayer',
   i: string,
+  r: Router,
 ): void => {
   // Safely initialize the data layer if it doesn't exist
   const dataLayer = w[l as keyof typeof w] || []
   ;(w as any)[l] = dataLayer
+
+  // Push the initial GTM event with the current timestamp
+  dataLayer.push({
+    event: 'Init',
+    visitorType: 'customer',
+    pageTitle: d.title,
+    pageHostname: w.location.hostname,
+    pagePath: r.currentRoute.value.path,
+  })
 
   // Push the initial GTM event with the current timestamp
   dataLayer.push({
