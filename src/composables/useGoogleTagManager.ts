@@ -23,6 +23,8 @@ export const useGoogleTagManager = (
   ;(w as any)[l] = dataLayer
 
   // Push the initial GTM event with the current timestamp
+  // Os valores inseridos aqui serão adicionados permanentemente
+  // nos próximos eventos do GTM
   dataLayer.push({
     event: 'gtm.init',
     visitorType: 'customer',
